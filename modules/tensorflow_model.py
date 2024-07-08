@@ -19,6 +19,7 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python tensorflow_model.py <input_data>")
     else:
+        # For demonstration, we'll generate random input data
         input_data = np.random.random((1, 784))  # Example input data
         model = load_model()
         result = predict(model, input_data)
