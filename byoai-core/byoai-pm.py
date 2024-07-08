@@ -1,16 +1,42 @@
 import argparse
+import os
+import shutil
+
+# Directory where modules are installed
+MODULES_DIR = 'modules'
+
+# Directory where repository modules are stored
+REPOSITORY_DIR = 'repository'
 
 def search_module(module_name):
     print(f"Searching for module: {module_name}")
-    # Add logic to search for the module in the repository
+    module_path = os.path.join(REPOSITORY_DIR, f"{module_name}.py")
+    if os.path.exists(module_path):
+        print(f"Module found: {module_name}")
+    else:
+        print(f"Module {module_name} not found in the repository.")
 
 def install_module(module_name):
     print(f"Installing module: {module_name}")
-    # Add logic to install the module from the repository
+    module_path = os.path.join(REPOSITORY_DIR, f"{module_name}.py")
+    if os.path.exists(module_path):
+        shutil.copy(module_path, os.path.join(MODULES_DIR, f"{module_name}.py"))
+        print(f"Module {module_name} installed successfully.")
+    else:
+        print(f"Module {module_name} not found in the repository.")
 
 def update_modules():
     print("Updating all modules")
-    # Add logic to update all installed modules
+    for module_name in os.listdir(MODULES_DIR):
+        if module_name.endswith('.py'):
+            module_name = module_name[:-3]
+            module_path = os.path.join(REPOSITORY_DIR, f"{module_name}.py")
+            if os.path.exists(module_path):
+                shutil.copy(module_path, os.path.join(MODULES_DIR, f"{module_name}.py"))
+                print(f"Updated {module_name}")
+            else:
+                print(f"Module {module_name} not found in the repository.")
+    print("All modules updated successfully.")
 
 def main():
     parser = argparse.ArgumentParser(description="BYOAI Package Manager")
