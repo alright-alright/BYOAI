@@ -34,7 +34,7 @@ We have created a proof of concept that can quickly and easily install and run a
 To list all available models:
 
 <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre><code>python byoai-core/byoai-cli.py list</code></pre>
+<pre>python byoai-core/byoai-cli.py list</pre>
 </div>
 
 ### Search for a Specific Model
@@ -42,7 +42,7 @@ To list all available models:
 To search for a specific model:
 
 <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre><code>python byoai-core/byoai-cli.py search &lt;query&gt;</code></pre>
+<pre>python byoai-core/byoai-cli.py search &lt;query&gt;</pre>
 </div>
 
 ### Install a Specific Model
@@ -50,7 +50,7 @@ To search for a specific model:
 To install a specific model:
 
 <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre><code>python byoai-core/byoai-cli.py install &lt;model_name&gt;</code></pre>
+<pre>python byoai-core/byoai-cli.py install &lt;model_name&gt;</pre>
 </div>
 
 ### Interactive CLI Usage
@@ -59,17 +59,17 @@ You can now use the interactive CLI tool to browse, select, and install models w
 
 1. **List all available models:** 
 <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre><code>python byoai-core/byoai-cli.py list</code></pre>
+<pre>python byoai-core/byoai-cli.py list</pre>
 </div>
 
 2. **Search for a specific model:** 
 <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre><code>python byoai-core/byoai-cli.py search &lt;query&gt;</code></pre>
+<pre>python byoai-core/byoai-cli.py search &lt;query&gt;</pre>
 </div>
 
 3. **Install a specific model:** 
 <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre><code>python byoai-core/byoai-cli.py install &lt;model_name&gt;</code></pre>
+<pre>python byoai-core/byoai-cli.py install &lt;model_name&gt;</pre>
 </div>
 
 ## Repository Structure
@@ -82,6 +82,7 @@ You can now use the interactive CLI tool to browse, select, and install models w
 
 ### Expand Model Library
 - Identify and integrate more interesting AI models to showcase the versatility of BYOAI.
+- Index the TensorFlow library to make it easily accessible and usable within the BYOAI system.
 
 ### Modular Model Bundling
 - Develop a method to bundle multiple models together into new modular models.
