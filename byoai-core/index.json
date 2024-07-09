@@ -1,0 +1,22 @@
+[
+  {
+    "name": "gpt2_text_generation",
+    "description": "GPT-2 model for text generation",
+    "url": "https://path/to/gpt2_text_generation"
+  },
+  {
+    "name": "bert_ner",
+    "description": "BERT model for named entity recognition",
+    "url": "https://path/to/bert_ner"
+  },
+  {
+    "name": "mobilenet_image_classification",
+    "description": "MobileNet model for image classification",
+    "url": "https://path/to/mobilenet_image_classification"
+  },
+  {
+    "name": "tensorflow_text_classification",
+    "description": "TensorFlow model for text classification",
+    "url": "https://path/to/tensorflow_text_classification"
+  }
+]
