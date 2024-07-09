@@ -20,10 +20,8 @@ def search_models(query):
     models = fetch_model_index()
     for model in models:
         if query.lower() in model["name"].lower():
-            print(f"{colored('Model:', 'white')} {colored(model['name'], 'green')}")
-            print(f"{colored('Description:', 'yellow')} {colored(model['description'], 'cyan' if model['description'] == 'No description available' else 'green')}")
-            print(f"{colored('URL:', 'white')} {colored(model['url'], 'green')}")
-            print()
+            description_color = 'cyan' if model['description'] == 'No description available' else 'green'
+            print(f"{colored('Model -->', 'white')} {colored(model['name'], 'green')} {colored('| Description -->', 'yellow')} {colored(model['description'] or 'No description available', description_color)}")
 
 def list_models():
     models = fetch_model_index()
@@ -43,7 +41,7 @@ def install_model(model_name):
                     script_content = f.read()
                 with open(os.path.join(INSTALL_DIR, f"{model_name}.py"), 'w') as f:
                     f.write(script_content)
-                print(f"Model {model_name} installed successfully from local path.")
+                print(f"{colored('Model -->', 'white')} {colored(model_name, 'green')} {colored('installed successfully from local path.', 'green')}")
             else:
                 response = requests.get(url)
                 if response.status_code == 200:
@@ -53,11 +51,11 @@ def install_model(model_name):
                     model_path = os.path.join(model_dir, f"{os.path.basename(model_name)}{file_extension}")
                     with open(model_path, 'wb') as f:
                         f.write(response.content)
-                    print(f"Model {model_name} installed successfully from URL.")
+                    print(f"{colored('Model -->', 'white')} {colored(model_name, 'green')} {colored('installed successfully from URL.', 'green')}")
                 else:
-                    print(f"Failed to download the model: {model_name}")
+                    print(f"{colored('Failed to download the model:', 'red')} {colored(model_name, 'red')}")
             return
-    print(f"Model {model_name} not found.")
+    print(f"{colored('Model', 'red')} {colored(model_name, 'red')} {colored('not found.', 'red')}")
 
 def update_models():
     models = fetch_model_index()
