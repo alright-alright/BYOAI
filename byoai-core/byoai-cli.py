@@ -2,11 +2,17 @@ import json
 import os
 import sys
 import requests
+import subprocess
 from urllib.parse import urlparse
-from termcolor import colored
 
 REPO_URL = "./byoai-core/index.json"
 INSTALL_DIR = "./modules/"
+
+def clear_screen():
+    subprocess.run('clear' if os.name == 'posix' else 'cls', shell=True)
+
+def color_text(text, color_code):
+    return f"\033[{color_code}m{text}\033[0m"
 
 def fetch_model_index():
     try:
@@ -20,14 +26,15 @@ def search_models(query):
     models = fetch_model_index()
     for model in models:
         if query.lower() in model["name"].lower():
-            description_color = 'cyan' if model['description'] == 'No description available' else 'green'
-            print(f"{colored('Model -->', 'white')} {colored(model['name'], 'green')} {colored('| Description -->', 'yellow')} {colored(model['description'] or 'No description available', description_color)}")
+            print(f"{color_text('Model -->', '37')} {color_text(model['name'], '32')} {color_text('| Description -->', '33')} {color_text(model['description'] or 'No description available', '36' if model['description'] == 'No description available' else '32')}")
+            print(f"{color_text('URL:', '37')} {color_text(model['url'], '32')}")
+            print()
 
 def list_models():
     models = fetch_model_index()
     for model in models:
-        description_color = 'cyan' if model['description'] == 'No description available' else 'green'
-        print(f"{colored('Model -->', 'white')} {colored(model['name'], 'green')} {colored('| Description -->', 'yellow')} {colored(model['description'] or 'No description available', description_color)}")
+        description_color = '36' if model['description'] == 'No description available' else '32'
+        print(f"{color_text('Model -->', '37')} {color_text(model['name'], '32')} {color_text('| Description -->', '33')} {color_text(model['description'] or 'No description available', description_color)}")
 
 def install_model(model_name):
     models = fetch_model_index()
@@ -41,7 +48,7 @@ def install_model(model_name):
                     script_content = f.read()
                 with open(os.path.join(INSTALL_DIR, f"{model_name}.py"), 'w') as f:
                     f.write(script_content)
-                print(f"{colored('Model -->', 'white')} {colored(model_name, 'green')} {colored('installed successfully from local path.', 'green')}")
+                print(f"{color_text('Model:', '37')} {color_text(model_name, '32')} {color_text('installed successfully from local path.', '36')}")
             else:
                 response = requests.get(url)
                 if response.status_code == 200:
@@ -51,11 +58,11 @@ def install_model(model_name):
                     model_path = os.path.join(model_dir, f"{os.path.basename(model_name)}{file_extension}")
                     with open(model_path, 'wb') as f:
                         f.write(response.content)
-                    print(f"{colored('Model -->', 'white')} {colored(model_name, 'green')} {colored('installed successfully from URL.', 'green')}")
+                    print(f"{color_text('Model:', '37')} {color_text(model_name, '32')} {color_text('installed successfully from URL.', '36')}")
                 else:
-                    print(f"{colored('Failed to download the model:', 'red')} {colored(model_name, 'red')}")
+                    print(f"{color_text('Failed to download the model:', '31')} {color_text(model_name, '32')}")
             return
-    print(f"{colored('Model', 'red')} {colored(model_name, 'red')} {colored('not found.', 'red')}")
+    print(f"{color_text('Model:', '31')} {color_text(model_name, '32')} {color_text('not found.', '31')}")
 
 def update_models():
     models = fetch_model_index()
@@ -63,43 +70,66 @@ def update_models():
         install_model(model["name"])
 
 def bundle_models(models):
-    # Placeholder for bundling logic
     print(f"Bundling models: {', '.join(models)}")
-    # Additional logic for bundling can be added here
+
+def main_menu():
+    clear_screen()
+    print()
+    print(f"{color_text('Welcome to the BYOAI build your own AI project', '32')}")
+    print()
+    print(f"{color_text('Select an option:', '37')}")
+    print()
+    print(f"{color_text('1.', '37')} {color_text('List Models', '33')}")
+    print(f"{color_text('2.', '37')} {color_text('Search Models', '33')}")
+    print(f"{color_text('3.', '37')} {color_text('Install Model', '33')}")
+    print(f"{color_text('4.', '37')} {color_text('Update Models', '33')}")
+    print(f"{color_text('5.', '37')} {color_text('Bundle Models', '33')}")
+    print(f"{color_text('6.', '37')} {color_text('BYOAI CLI', '33')}")
+    print(f"{color_text('7.', '37')} {color_text('Exit BYOAI', '33')}")
+    print()
+
+    choice = input(f"{color_text('Enter your choice:', '37')} ")
+    return choice
+
+def byoai_prompt():
+    while True:
+        command = input(f"{color_text('BYOAI >', '36')} ")
+        if command.strip().lower() == 'exit':
+            break
+        try:
+            os.system(command)
+        except Exception as e:
+            print(f"{color_text('Error:', '31')} {str(e)}")
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: byoai <command> [<args>]")
-        sys.exit(1)
-
-    command = sys.argv[1]
-
-    if command == "search":
-        if len(sys.argv) < 3:
-            print("Usage: byoai search <query>")
-            sys.exit(1)
-        query = sys.argv[2]
-        search_models(query)
-    elif command == "list":
-        list_models()
-    elif command == "install":
-        if len(sys.argv) < 3:
-            print("Usage: byoai install <model_name>")
-            sys.exit(1)
-        model_name = sys.argv[2]
-        install_model(model_name)
-    elif command == "update":
-        update_models()
-    elif command == "bundle":
-        if len(sys.argv) < 3:
-            print("Usage: byoai bundle <model1> <model2> ...")
-            sys.exit(1)
-        models = sys.argv[2:]
-        bundle_models(models)
-    else:
-        print(f"Unknown command: {command}")
-        print("Usage: byoai <command> [<args>]")
-        sys.exit(1)
+    while True:
+        choice = main_menu()
+        if choice == '1':
+            clear_screen()
+            list_models()
+        elif choice == '2':
+            clear_screen()
+            query = input("Enter the model name to search: ")
+            search_models(query)
+        elif choice == '3':
+            clear_screen()
+            model_name = input("Enter the model name to install: ")
+            install_model(model_name)
+        elif choice == '4':
+            clear_screen()
+            update_models()
+        elif choice == '5':
+            clear_screen()
+            models = input("Enter the model names to bundle (comma-separated): ").split(',')
+            bundle_models(models)
+        elif choice == '6':
+            clear_screen()
+            byoai_prompt()
+        elif choice == '7':
+            break
+        else:
+            print("Invalid option. Please try again.")
+        input("\nPress Enter to return to the main menu...")
 
 if __name__ == "__main__":
     main()
