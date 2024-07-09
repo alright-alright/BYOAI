@@ -26,15 +26,34 @@ We have created a proof of concept that can quickly and easily install and run a
 - Searching for specific models
 - Installing models dynamically
 - Enhanced formatting for better user experience
+- Interactive menu system for easy navigation
 
 ## Usage
+
+### Interactive CLI Usage
+
+You can now use the interactive CLI tool to browse, select, and install models with enhanced formatting:
+
+1. **Start the interactive CLI:** 
+<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
+<pre><code>python byoai-core/byoai-cli.py</code></pre>
+</div>
+
+2. The main menu will appear with the following options:
+    - 1. List Models
+    - 2. Search Models
+    - 3. Install Model
+    - 4. Update Models
+    - 5. Bundle Models
+    - 6. Drop to BYOAI CLI
+    - 7. Exit
 
 ### List all Available Models
 
 To list all available models:
 
 <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre>python byoai-core/byoai-cli.py list</pre>
+<pre><code>python byoai-core/byoai-cli.py list</code></pre>
 </div>
 
 ### Search for a Specific Model
@@ -42,7 +61,7 @@ To list all available models:
 To search for a specific model:
 
 <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre>python byoai-core/byoai-cli.py search &lt;query&gt;</pre>
+<pre><code>python byoai-core/byoai-cli.py search &lt;query&gt;</code></pre>
 </div>
 
 ### Install a Specific Model
@@ -50,26 +69,7 @@ To search for a specific model:
 To install a specific model:
 
 <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre>python byoai-core/byoai-cli.py install &lt;model_name&gt;</pre>
-</div>
-
-### Interactive CLI Usage
-
-You can now use the interactive CLI tool to browse, select, and install models with enhanced formatting:
-
-1. **List all available models:** 
-<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre>python byoai-core/byoai-cli.py list</pre>
-</div>
-
-2. **Search for a specific model:** 
-<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre>python byoai-core/byoai-cli.py search &lt;query&gt;</pre>
-</div>
-
-3. **Install a specific model:** 
-<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-<pre>python byoai-core/byoai-cli.py install &lt;model_name&gt;</pre>
+<pre><code>python byoai-core/byoai-cli.py install &lt;model_name&gt;</code></pre>
 </div>
 
 ## Repository Structure
@@ -82,7 +82,7 @@ You can now use the interactive CLI tool to browse, select, and install models w
 
 ### Expand Model Library
 - Identify and integrate more interesting AI models to showcase the versatility of BYOAI.
-- Index the TensorFlow library to make it easily accessible and usable within the BYOAI system.
+- Index the TensorFlow library next.
 
 ### Modular Model Bundling
 - Develop a method to bundle multiple models together into new modular models.
