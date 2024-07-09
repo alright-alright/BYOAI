@@ -1,6 +1,6 @@
 # Build Your Own AI (BYOAI)
 
-![BYOAI Logo](./assets/BYOAI_logo.png)
+![BYOAI Logo](./assets/logo.png)
 
 ## Overview
 
