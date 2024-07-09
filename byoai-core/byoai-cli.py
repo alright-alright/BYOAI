@@ -3,6 +3,7 @@ import os
 import sys
 import requests
 from urllib.parse import urlparse
+from termcolor import colored
 
 REPO_URL = "./byoai-core/index.json"
 INSTALL_DIR = "./modules/"
@@ -19,17 +20,16 @@ def search_models(query):
     models = fetch_model_index()
     for model in models:
         if query.lower() in model["name"].lower():
-            print(f"Model: {model['name']}")
-            print(f"Description: {model['description']}")
-            print(f"URL: {model['url']}")
+            print(f"{colored('Model:', 'white')} {colored(model['name'], 'green')}")
+            print(f"{colored('Description:', 'yellow')} {colored(model['description'], 'cyan' if model['description'] == 'No description available' else 'green')}")
+            print(f"{colored('URL:', 'white')} {colored(model['url'], 'green')}")
             print()
 
 def list_models():
     models = fetch_model_index()
     for model in models:
-        print(f"Model: {model['name']}")
-        print(f"Description: {model['description']}")
-        print()
+        description_color = 'cyan' if model['description'] == 'No description available' else 'green'
+        print(f"{colored('Model -->', 'white')} {colored(model['name'], 'green')} {colored('| Description -->', 'yellow')} {colored(model['description'] or 'No description available', description_color)}")
 
 def install_model(model_name):
     models = fetch_model_index()
@@ -37,21 +37,25 @@ def install_model(model_name):
         if model_name.lower() == model["name"].lower():
             url = model["url"]
             parsed_url = urlparse(url)
-            file_extension = os.path.splitext(parsed_url.path)[1] or ".py"
-            model_dir = os.path.join(INSTALL_DIR, os.path.dirname(model_name.replace("/", "_")))
-            if not os.path.exists(model_dir):
-                os.makedirs(model_dir)
-            model_path = os.path.join(model_dir, f"{os.path.basename(model_name)}{file_extension}")
-            if parsed_url.scheme.startswith("http"):
+            if parsed_url.scheme == "file":
+                path = os.path.abspath(os.path.join(os.getcwd(), parsed_url.path.lstrip('/')))
+                with open(path, 'r') as f:
+                    script_content = f.read()
+                with open(os.path.join(INSTALL_DIR, f"{model_name}.py"), 'w') as f:
+                    f.write(script_content)
+                print(f"Model {model_name} installed successfully from local path.")
+            else:
                 response = requests.get(url)
                 if response.status_code == 200:
+                    model_dir = os.path.join(INSTALL_DIR, model_name)
+                    os.makedirs(model_dir, exist_ok=True)
+                    file_extension = os.path.splitext(parsed_url.path)[1]
+                    model_path = os.path.join(model_dir, f"{os.path.basename(model_name)}{file_extension}")
                     with open(model_path, 'wb') as f:
                         f.write(response.content)
                     print(f"Model {model_name} installed successfully from URL.")
                 else:
                     print(f"Failed to download the model: {model_name}")
-            else:
-                print(f"Unsupported URL scheme for model: {model_name}")
             return
     print(f"Model {model_name} not found.")
 
