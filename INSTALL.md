@@ -1,5 +1,7 @@
 # Installation Guide
 
+<img src="./assets/logo.png" alt="BYOAI Logo" width="200" />
+
 ## Prerequisites
 - Python 3.x
 - Git

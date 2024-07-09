@@ -1,5 +1,7 @@
 # BYOAI Dependencies
 
+<img src="./assets/logo.png" alt="BYOAI Logo" width="200" />
+
 ## Overview
 This document lists all the dependencies required to run the BYOAI project and provides instructions on how to set up the environment.
 
