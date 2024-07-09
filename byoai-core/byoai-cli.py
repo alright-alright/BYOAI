@@ -22,22 +22,30 @@ def fetch_model_index():
         print("Failed to fetch model index.")
         sys.exit(1)
 
-def search_models(query):
-    models = fetch_model_index()
+def fetch_tf_models():
+    try:
+        with open("tf_models.json", 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print("Failed to fetch TensorFlow models index.")
+        sys.exit(1)
+
+def search_models(query, source):
+    models = fetch_model_index() if source == 'huggingface' else fetch_tf_models()
     for model in models:
         if query.lower() in model["name"].lower():
             print(f"{color_text('Model -->', '37')} {color_text(model['name'], '32')} {color_text('| Description -->', '33')} {color_text(model['description'] or 'No description available', '36' if model['description'] == 'No description available' else '32')}")
             print(f"{color_text('URL:', '37')} {color_text(model['url'], '32')}")
             print()
 
-def list_models():
-    models = fetch_model_index()
+def list_models(source):
+    models = fetch_model_index() if source == 'huggingface' else fetch_tf_models()
     for model in models:
         description_color = '36' if model['description'] == 'No description available' else '32'
         print(f"{color_text('Model -->', '37')} {color_text(model['name'], '32')} {color_text('| Description -->', '33')} {color_text(model['description'] or 'No description available', description_color)}")
 
-def install_model(model_name):
-    models = fetch_model_index()
+def install_model(model_name, source):
+    models = fetch_model_index() if source == 'huggingface' else fetch_tf_models()
     for model in models:
         if model_name.lower() == model["name"].lower():
             url = model["url"]
@@ -73,7 +81,7 @@ def print_model_usage(model_name):
 def update_models():
     models = fetch_model_index()
     for model in models:
-        install_model(model["name"])
+        install_model(model["name"], 'huggingface')
 
 def bundle_models(models):
     print(f"Bundling models: {', '.join(models)}")
@@ -86,7 +94,7 @@ def use_installed_model():
 
     print("Installed models:")
     for index, model in enumerate(models, start=1):
-        print(f"{color_text(str(index), '33')}. {color_text(model, '32')}")
+        print(f"{color_text(str(index), '37')}. {color_text(model, '33')}")
 
     choice = input(f"{color_text('Enter the number of the model you want to use:', '37')} ")
     try:
@@ -111,14 +119,26 @@ def main_menu():
     print()
     print(f"{color_text('Select an option:', '37')}")
     print()
-    print(f"{color_text('1. List Models', '33')}")
-    print(f"{color_text('2. Search Models', '33')}")
-    print(f"{color_text('3. Install Model', '33')}")
-    print(f"{color_text('4. Update Models', '33')}")
-    print(f"{color_text('5. Bundle Models', '33')}")
-    print(f"{color_text('6. Installed Model', '33')}")
-    print(f"{color_text('7. BYOAI CLI', '33')}")
-    print(f"{color_text('8. Exit Application', '33')}")
+    print(f"{color_text('1.', '37')} {color_text('List Models', '33')}")
+    print(f"{color_text('2.', '37')} {color_text('Search Models', '33')}")
+    print(f"{color_text('3.', '37')} {color_text('Install Model', '33')}")
+    print(f"{color_text('4.', '37')} {color_text('Update Models', '33')}")
+    print(f"{color_text('5.', '37')} {color_text('Bundle Models', '33')}")
+    print(f"{color_text('6.', '37')} {color_text('Use Installed Model', '33')}")
+    print(f"{color_text('7.', '37')} {color_text('BYOAI CLI Prompt', '33')}")
+    print(f"{color_text('8.', '37')} {color_text('Exit Application', '33')}")
+    print()
+
+    choice = input(f"{color_text('Enter your choice:', '37')} ")
+    return choice
+
+def list_sub_menu():
+    clear_screen()
+    print()
+    print(f"{color_text('Select a source:', '37')}")
+    print()
+    print(f"{color_text('1.', '37')} {color_text('Hugging Face Models', '33')}")
+    print(f"{color_text('2.', '37')} {color_text('TensorFlow Models', '33')}")
     print()
 
     choice = input(f"{color_text('Enter your choice:', '37')} ")
@@ -138,16 +158,39 @@ def main():
     while True:
         choice = main_menu()
         if choice == '1':
-            clear_screen()
-            list_models()
+            sub_choice = list_sub_menu()
+            if sub_choice == '1':
+                clear_screen()
+                list_models('huggingface')
+            elif sub_choice == '2':
+                clear_screen()
+                list_models('tensorflow')
+            else:
+                print("Invalid option. Please try again.")
         elif choice == '2':
-            clear_screen()
-            query = input("Enter the model name to search: ")
-            search_models(query)
+            sub_choice = list_sub_menu()
+            if sub_choice == '1':
+                clear_screen()
+                query = input(f"{color_text('Enter the model name to search:', '33')} ")
+                search_models(query, 'huggingface')
+            elif sub_choice == '2':
+                clear_screen()
+                query = input(f"{color_text('Enter the model name to search:', '33')} ")
+                search_models(query, 'tensorflow')
+            else:
+                print("Invalid option. Please try again.")
         elif choice == '3':
-            clear_screen()
-            model_name = input("Enter the model name to install: ")
-            install_model(model_name)
+            sub_choice = list_sub_menu()
+            if sub_choice == '1':
+                clear_screen()
+                model_name = input(f"{color_text('Enter the model name to install:', '33')} ")
+                install_model(model_name, 'huggingface')
+            elif sub_choice == '2':
+                clear_screen()
+                model_name = input(f"{color_text('Enter the model name to install:', '33')} ")
+                install_model(model_name, 'tensorflow')
+            else:
+                print("Invalid option. Please try again.")
         elif choice == '4':
             clear_screen()
             update_models()
