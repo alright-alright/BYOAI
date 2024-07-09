@@ -1,5 +1,7 @@
 # BYOAI Platform Vision and Implementation Plan
 
+<img src="./assets/logo.png" alt="BYOAI Logo" width="200" />
+
 ## Vision for BYOAI as a Platform
 
 1. **Dynamic Model Installation:**
@@ -87,4 +89,4 @@
    - Announce the availability of BYOAI as a dynamic platform.
    - Encourage users to explore and contribute to the platform.
 
-This document serves as a roadmap for transforming BYOAI into a robust and user-friendly AI platform. By following this plan, we can create a versatile tool that empowers users to easily manage and deploy AI models. If you need further assistance or have any questions, feel free to ask!
+This document serves as a roadmap for transforming BYOAI into a robust and user-friendly AI platform. By following this plan, we can create a versatile tool that empowers users to easily manage and deploy AI models. If you need further assistance or have any questions, feel free to ask!!
