@@ -1,6 +1,6 @@
 # Build Your Own AI (BYOAI)
 
-![BYOAI Logo](./assets/logo.png)
+<img src="./assets/logo.png" alt="BYOAI Logo" width="200" />
 
 ## Overview
 
