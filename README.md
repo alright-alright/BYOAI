@@ -4,7 +4,7 @@
 
 ## Overview
 
-BYOAI is a modular and customizable AI system inspired by Gentoo, allowing users to build and integrate various AI models efficiently. This project aims to democratize AI by making it accessible and easy to use.
+BYOAI is a modular and customizable AI system inspired by Gentoo, allowing users to build and integrate various AI models efficiently. This project aims to democratize AI by making it accessible and easy to use for all.
 
 ## Current Status
 
