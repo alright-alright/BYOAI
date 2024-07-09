@@ -6,38 +6,54 @@
 
 BYOAI is a modular and customizable AI system inspired by Gentoo, allowing users to build and integrate various AI models efficiently. This project aims to democratize AI by making it accessible and easy to use for all.
 
+## Vision and Goal
+
+Our vision for BYOAI is to create a platform that enables users to easily manage, customize, and deploy AI models. Inspired by the modularity and flexibility of Gentoo Linux, BYOAI aims to provide a robust and user-friendly environment for AI enthusiasts and developers.
+
+### Key Features:
+
+- **Dynamic Model Installation:** Browse, select, and install models through a CLI interface.
+- **User-Friendly CLI:** Commands for searching, listing, installing, and updating models.
+- **Model Repository and Index:** A centralized repository with an index of available models and their metadata.
+- **Modular Architecture:** Support for bundling multiple models together and optimizing them for different hardware configurations.
+- **Community Contributions:** A system where users can contribute new models to the repository, ensuring quality and compatibility.
+
 ## Current Status
 
-We have created a proof of concept that can quickly and easily install and run several AI models. The current models available are:
+We have created a proof of concept that can quickly and easily install and run a wide variety of AI models from external sources like Hugging Face. The CLI tool now supports:
 
-- **GPT-2 Text Generation**
-- **BERT Named Entity Recognition (NER)**
-- **MobileNet Image Classification**
-- **TensorFlow Text Classification**
-
-These models demonstrate the flexibility and power of BYOAI in managing different AI capabilities.
+- Listing available models
+- Searching for specific models
+- Installing models dynamically
+- Enhanced formatting for better user experience
 
 ## Usage
 
-### Install and Run GPT-2 Text Generation Script
+### List all Available Models
 
-1. **Install the GPT-2 Text Generation Module:** `python byoai-core/byoai-pm.py install gpt2_text_generation`
-2. **Run the GPT-2 Text Generation Script:** `python modules/gpt2_text_generation.py 'Once upon a time'`
+To list all available models:
 
-### Install and Run BERT NER Script
+python byoai-core/byoai-cli.py list
 
-1. **Install the BERT NER Module:** `python byoai-core/byoai-pm.py install bert_ner`
-2. **Run the BERT NER Script:** `python modules/bert_ner.py 'Albert Einstein was a theoretical physicist.'`
+### Search for a Specific Model
 
-### Install and Run MobileNet Image Classification Script
+To search for a specific model:
 
-1. **Install the MobileNet Image Classification Module:** `python byoai-core/byoai-pm.py install mobilenet_image_classification`
-2. **Run the MobileNet Image Classification Script:** `python modules/mobilenet_image_classification.py path_to_your_image.jpg`
+python byoai-core/byoai-cli.py search <query>
 
-### Install and Run Text Classification Script
+### Install a Specific Model
 
-1. **Install the Text Classification Module:** `python byoai-core/byoai-pm.py install text_classification`
-2. **Run the Text Classification Script:** `python modules/text_classification.py 'I really enjoyed this film'`
+To install a specific model:
+
+python byoai-core/byoai-cli.py install <model_name>
+
+### Interactive CLI Usage
+
+You can now use the interactive CLI tool to browse, select, and install models with enhanced formatting:
+
+1. **List all available models:** python byoai-core/byoai-cli.py list
+2. **Search for a specific model:** python byoai-core/byoai-cli.py search <query>
+3. **Install a specific model:** python byoai-core/byoai-cli.py install <model_name>
 
 ## Repository Structure
 
@@ -55,6 +71,9 @@ These models demonstrate the flexibility and power of BYOAI in managing differen
 
 ### Optimization and Recompilation
 - Investigate ways to optimize and recompile models for different hardware configurations, enhancing performance and compatibility.
+
+### Interactive and User-Friendly Interface
+- Beautify the output and add interactive features to enhance user experience.
 
 ## Contributions
 
