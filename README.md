@@ -40,13 +40,18 @@ You can now use the interactive CLI tool to browse, select, and install models w
 </div>
 
 2. The main menu will appear with the following options:
-    - 1. List Models
-    - 2. Search Models
-    - 3. Install Model
-    - 4. Update Models
-    - 5. Bundle Models
-    - 6. Drop to BYOAI CLI
-    - 7. Exit
+
+<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
+<pre><code>
+1. List Models
+2. Search Models
+3. Install Model
+4. Update Models
+5. Bundle Models
+6. Drop to BYOAI CLI
+7. Exit
+</code></pre>
+</div>
 
 ### List all Available Models
 
