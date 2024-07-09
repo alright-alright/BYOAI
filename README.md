@@ -33,27 +33,44 @@ We have created a proof of concept that can quickly and easily install and run a
 
 To list all available models:
 
-python byoai-core/byoai-cli.py list
+<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
+<pre><code>python byoai-core/byoai-cli.py list</code></pre>
+</div>
 
 ### Search for a Specific Model
 
 To search for a specific model:
 
-python byoai-core/byoai-cli.py search <query>
+<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
+<pre><code>python byoai-core/byoai-cli.py search &lt;query&gt;</code></pre>
+</div>
 
 ### Install a Specific Model
 
 To install a specific model:
 
-python byoai-core/byoai-cli.py install <model_name>
+<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
+<pre><code>python byoai-core/byoai-cli.py install &lt;model_name&gt;</code></pre>
+</div>
 
 ### Interactive CLI Usage
 
 You can now use the interactive CLI tool to browse, select, and install models with enhanced formatting:
 
-1. **List all available models:** python byoai-core/byoai-cli.py list
-2. **Search for a specific model:** python byoai-core/byoai-cli.py search <query>
-3. **Install a specific model:** python byoai-core/byoai-cli.py install <model_name>
+1. **List all available models:** 
+<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
+<pre><code>python byoai-core/byoai-cli.py list</code></pre>
+</div>
+
+2. **Search for a specific model:** 
+<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
+<pre><code>python byoai-core/byoai-cli.py search &lt;query&gt;</code></pre>
+</div>
+
+3. **Install a specific model:** 
+<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
+<pre><code>python byoai-core/byoai-cli.py install &lt;model_name&gt;</code></pre>
+</div>
 
 ## Repository Structure
 
