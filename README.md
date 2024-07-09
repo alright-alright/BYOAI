@@ -48,8 +48,8 @@ You can now use the interactive CLI tool to browse, select, and install models w
 3. Install Model
 4. Update Models
 5. Bundle Models
-6. Drop to BYOAI CLI
-7. Exit
+6. BYOAI CLI
+7. Exit BYOAI
 </code></pre>
 </div>
 
