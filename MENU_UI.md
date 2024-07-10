@@ -5,13 +5,13 @@
 =======================
     Welcome to BYOAI
 =======================
-1. Project Management
-2. Model Management
-3. Training and Deployment
-4. Settings
-5. Help
-6. Exit
-=======================
+1. Project Management  
+2. Model Management  
+3. Training and Deployment  
+4. Settings  
+5. Help  
+6. Exit  
+=======================  
 Select an option (1-6):
 
 ## 1. Project Management
@@ -19,11 +19,11 @@ Select an option (1-6):
 =======================
    Project Management
 =======================
-1. Create New Project
-2. Open Existing Project
-3. Delete Project
-4. Back to Main Menu
-=======================
+1. Create New Project  
+2. Open Existing Project  
+3. Delete Project  
+4. Back to Main Menu  
+=======================  
 Select an option (1-4):
 
 ### Create New Project
@@ -31,13 +31,13 @@ Select an option (1-4):
 =======================
    Create New Project
 =======================
-Enter Project Name: [user_input]
-Project [user_input] created successfully!
-=======================
-1. Add Models
-2. Add Data
-3. Back to Project Management
-=======================
+Enter Project Name: [user_input]  
+Project [user_input] created successfully!  
+=======================  
+1. Add Models  
+2. Add Data  
+3. Back to Project Management  
+=======================  
 Select an option (1-3):
 
 ### Open Existing Project
@@ -45,18 +45,18 @@ Select an option (1-3):
 =======================
    Open Existing Project
 =======================
-Available Projects:
-1. Project1
-2. Project2
-3. Project3
-=======================
-Enter Project Number to Open: [user_input]
-=======================
-1. Manage Models
-2. Manage Data
-3. View Outputs
-4. Back to Project Management
-=======================
+Available Projects:  
+1. Project1  
+2. Project2  
+3. Project3  
+=======================  
+Enter Project Number to Open: [user_input]  
+=======================  
+1. Manage Models  
+2. Manage Data  
+3. View Outputs  
+4. Back to Project Management  
+=======================  
 Select an option (1-4):
 
 ## 2. Model Management
@@ -64,11 +64,11 @@ Select an option (1-4):
 =======================
    Model Management
 =======================
-1. List Available Models
-2. Bundle Models
-3. Customize Model
-4. Back to Main Menu
-=======================
+1. List Available Models  
+2. Bundle Models  
+3. Customize Model  
+4. Back to Main Menu  
+=======================  
 Select an option (1-4):
 
 ### List Available Models
@@ -76,13 +76,13 @@ Select an option (1-4):
 =======================
   Available Models
 =======================
-1. Model1
-2. Model2
-3. Model3
-=======================
-1. View Model Details
-2. Back to Model Management
-=======================
+1. Model1  
+2. Model2  
+3. Model3  
+=======================  
+1. View Model Details  
+2. Back to Model Management  
+=======================  
 Select an option (1-2):
 
 ### Bundle Models
@@ -90,18 +90,18 @@ Select an option (1-2):
 =======================
    Bundle Models
 =======================
-Available Models:
-1. Model1
-2. Model2
-3. Model3
-=======================
-Enter Model Numbers to Bundle (e.g., 1,2): [user_input]
-Enter Output Model Name: [user_input]
-Models bundled successfully!
-=======================
-1. Customize Bundled Model
-2. Back to Model Management
-=======================
+Available Models:  
+1. Model1  
+2. Model2  
+3. Model3  
+=======================  
+Enter Model Numbers to Bundle (e.g., 1,2): [user_input]  
+Enter Output Model Name: [user_input]  
+Models bundled successfully!  
+=======================  
+1. Customize Bundled Model  
+2. Back to Model Management  
+=======================  
 Select an option (1-2):
 
 ## 3. Training and Deployment
@@ -109,10 +109,10 @@ Select an option (1-2):
 =======================
 Training & Deployment
 =======================
-1. Train Model
-2. Deploy Model
-3. Back to Main Menu
-=======================
+1. Train Model  
+2. Deploy Model  
+3. Back to Main Menu  
+=======================  
 Select an option (1-3):
 
 ### Train Model
@@ -120,18 +120,18 @@ Select an option (1-3):
 =======================
      Train Model
 =======================
-Available Models:
-1. Model1
-2. Model2
-3. Model3
-=======================
-Enter Model Number to Train: [user_input]
-Enter Data Path: [user_input]
-Training started for [ModelName] with data from [DataPath]
-=======================
-1. Monitor Training Progress
-2. Back to Training & Deployment
-=======================
+Available Models:  
+1. Model1  
+2. Model2  
+3. Model3  
+=======================  
+Enter Model Number to Train: [user_input]  
+Enter Data Path: [user_input]  
+Training started for [ModelName] with data from [DataPath]  
+=======================  
+1. Monitor Training Progress  
+2. Back to Training & Deployment  
+=======================  
 Select an option (1-2):
 
 ### Deploy Model
@@ -139,22 +139,22 @@ Select an option (1-2):
 =======================
     Deploy Model
 =======================
-Available Models:
-1. Model1
-2. Model2
-3. Model3
-=======================
-Enter Model Number to Deploy: [user_input]
-Select Deployment Target:
-1. Local
-2. Cloud
-3. Edge Device
-=======================
-Deployment started for [ModelName] to [Target]
-=======================
-1. Monitor Deployment Status
-2. Back to Training & Deployment
-=======================
+Available Models:  
+1. Model1  
+2. Model2  
+3. Model3  
+=======================  
+Enter Model Number to Deploy: [user_input]  
+Select Deployment Target:  
+1. Local  
+2. Cloud  
+3. Edge Device  
+=======================  
+Deployment started for [ModelName] to [Target]  
+=======================  
+1. Monitor Deployment Status  
+2. Back to Training & Deployment  
+=======================  
 Select an option (1-2):
 
 ## 4. Settings
@@ -162,10 +162,10 @@ Select an option (1-2):
 =======================
        Settings
 =======================
-1. Configure Environment
-2. Manage User Profiles
-3. Back to Main Menu
-=======================
+1. Configure Environment  
+2. Manage User Profiles  
+3. Back to Main Menu  
+=======================  
 Select an option (1-3):
 
 ## 5. Help
@@ -173,12 +173,12 @@ Select an option (1-3):
 =======================
         Help
 =======================
-1. View Documentation
-2. Tutorials
-3. FAQs
-4. Contact Support
-5. Back to Main Menu
-=======================
+1. View Documentation  
+2. Tutorials  
+3. FAQs  
+4. Contact Support  
+5. Back to Main Menu  
+=======================  
 Select an option (1-5):
 
 # CLI Commands
