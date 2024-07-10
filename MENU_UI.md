@@ -1,6 +1,6 @@
-### Re-worked Menu System
+# Re-worked Menu System
 
-#### Main Menu
+## Main Menu
 
 =======================
     Welcome to BYOAI
@@ -14,7 +14,7 @@
 =======================
 Select an option (1-6):
 
-#### 1. Project Management
+## 1. Project Management
 
 =======================
    Project Management
@@ -26,7 +26,7 @@ Select an option (1-6):
 =======================
 Select an option (1-4):
 
-#### Create New Project
+### Create New Project
 
 =======================
    Create New Project
@@ -40,7 +40,7 @@ Project [user_input] created successfully!
 =======================
 Select an option (1-3):
 
-#### Open Existing Project
+### Open Existing Project
 
 =======================
    Open Existing Project
@@ -59,7 +59,7 @@ Enter Project Number to Open: [user_input]
 =======================
 Select an option (1-4):
 
-#### 2. Model Management
+## 2. Model Management
 
 =======================
    Model Management
@@ -71,7 +71,7 @@ Select an option (1-4):
 =======================
 Select an option (1-4):
 
-#### List Available Models
+### List Available Models
 
 =======================
   Available Models
@@ -85,7 +85,7 @@ Select an option (1-4):
 =======================
 Select an option (1-2):
 
-#### Bundle Models
+### Bundle Models
 
 =======================
    Bundle Models
@@ -104,7 +104,7 @@ Models bundled successfully!
 =======================
 Select an option (1-2):
 
-#### 3. Training and Deployment
+## 3. Training and Deployment
 
 =======================
 Training & Deployment
@@ -115,7 +115,7 @@ Training & Deployment
 =======================
 Select an option (1-3):
 
-#### Train Model
+### Train Model
 
 =======================
      Train Model
@@ -134,7 +134,7 @@ Training started for [ModelName] with data from [DataPath]
 =======================
 Select an option (1-2):
 
-#### Deploy Model
+### Deploy Model
 
 =======================
     Deploy Model
@@ -157,7 +157,7 @@ Deployment started for [ModelName] to [Target]
 =======================
 Select an option (1-2):
 
-#### 4. Settings
+## 4. Settings
 
 =======================
        Settings
@@ -168,7 +168,7 @@ Select an option (1-2):
 =======================
 Select an option (1-3):
 
-#### 5. Help
+## 5. Help
 
 =======================
         Help
@@ -181,7 +181,7 @@ Select an option (1-3):
 =======================
 Select an option (1-5):
 
-### CLI Commands
+# CLI Commands
 For advanced users who prefer using the CLI, we'll ensure all menu functionalities are also accessible via command-line commands.
 
 - **Project Management**
@@ -208,5 +208,5 @@ For advanced users who prefer using the CLI, we'll ensure all menu functionaliti
   - FAQs: `byoaicli view-faqs`
   - Contact Support: `byoaicli contact-support`
 
-### Summary
+# Summary
 This re-worked menu system is designed to provide a smooth and intuitive user experience, while also offering advanced users the flexibility to use CLI commands. By aligning our menu system with the USER_EXPERIENCE.md document, we ensure a cohesive and user-friendly approach to managing projects, models, training, and deployment.
