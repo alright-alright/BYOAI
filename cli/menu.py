@@ -64,16 +64,20 @@ def list_models(source, for_bundling=False):
     selected_models = []
 
     log_message(f"Models: {models}")
-    model_choices = [
+    choices = [
         inquirer.Checkbox(
             'models',
-            message=color_text("Select models to bundle:", '33'),
-            choices=[(model['name'], model['name']) for model in models]
+            message=color_text("Select models to bundle (Press space to select, Enter to confirm):", '34'),
+            choices=[
+                (f"{color_text(model['name'], '32')} - {color_text(model['description'] or 'No description available', '36' if model['description'] == 'No description available' else '32')}", model['name']) for model in models
+            ],
+            validate=lambda answer: 'You must choose at least one model.' if len(answer) == 0 else True
         )
     ]
 
-    answers = inquirer.prompt(model_choices)
-    selected_models = answers['models']
+    answers = inquirer.prompt(choices)
+    if answers and 'models' in answers:
+        selected_models = answers['models']
 
     log_message(f"Selected models: {selected_models}")
     return selected_models
@@ -127,7 +131,7 @@ def use_installed_model():
     for index, model in enumerate(models, start=1):
         print(f"{color_text(str(index), '37')}. {color_text(model, '33')}")
 
-    choice = input(color_text('Enter the number of the model you want to use: ', '37'))
+    choice = input(f"{color_text('Enter the number of the model you want to use:', '37')} ")
     try:
         model_index = int(choice) - 1
         if 0 <= model_index < len(models):
@@ -198,30 +202,30 @@ def model_management_menu():
         print(Fore.YELLOW + "6. Back to Main Menu" + Style.RESET_ALL)
         print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
         choice = input(color_text("Select an option (1-6): ", '37'))
-        
+
         if choice == '1':
-            query = input(color_text("Enter a search query: ", '37'))
+            query = input("Enter a search query: ")
             search_models(query, 'huggingface')
-            input(color_text("Press Enter to continue...", '37'))
+            input("Press Enter to continue...")
         elif choice == '2':
             models_to_bundle = list_models('huggingface', for_bundling=True)
             bundle_models(models_to_bundle)
-            input(color_text("Press Enter to continue...", '37'))
+            input("Press Enter to continue...")
         elif choice == '3':
-            model_name = input(color_text("Enter the name of the model to install: ", '37'))
+            model_name = input("Enter the name of the model to install: ")
             install_model(model_name, 'huggingface')
-            input(color_text("Press Enter to continue...", '37'))
+            input("Press Enter to continue...")
         elif choice == '4':
             update_models()
-            input(color_text("Press Enter to continue...", '37'))
+            input("Press Enter to continue...")
         elif choice == '5':
             use_installed_model()
-            input(color_text("Press Enter to continue...", '37'))
+            input("Press Enter to continue...")
         elif choice == '6':
             break
         else:
             print(f"{color_text('Invalid choice:', '31')} {choice}")
-            input(color_text("Press Enter to continue...", '37'))
+            input("Press Enter to continue...")
 
 def training_deployment_menu():
     clear_screen()
@@ -234,57 +238,24 @@ def training_deployment_menu():
     return choice
 
 def settings_menu():
-    while True:
-        clear_screen()
-        print_header("Settings")
-        print(Fore.YELLOW + "1. Change Installation Directory" + Style.RESET_ALL)
-        print(Fore.YELLOW + "2. View Log" + Style.RESET_ALL)
-        print(Fore.YELLOW + "3. Back to Main Menu" + Style.RESET_ALL)
-        print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
-        choice = input(color_text("Select an option (1-3): ", '37'))
-        
-        if choice == '1':
-            log_message("Changing installation directory.")
-            print("Functionality not implemented yet.")
-            input(color_text("Press Enter to continue...", '37'))
-        elif choice == '2':
-            log_message("Viewing log.")
-            with open(LOG_FILE, 'r') as log_file:
-                print(log_file.read())
-            input(color_text("Press Enter to continue...", '37'))
-        elif choice == '3':
-            log_message("Returning to the main menu.")
-            break
-        else:
-            log_message(f"Invalid choice: {choice}")
-            print(f"{color_text('Invalid choice:', '31')} {choice}")
-            input(color_text("Press Enter to continue...", '37'))
+    clear_screen()
+    print_header("Settings")
+    print(Fore.YELLOW + "1. Change Installation Directory" + Style.RESET_ALL)
+    print(Fore.YELLOW + "2. View Log" + Style.RESET_ALL)
+    print(Fore.YELLOW + "3. Back to Main Menu" + Style.RESET_ALL)
+    print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
+    choice = input(color_text("Select an option (1-3): ", '37'))
+    return choice
 
 def help_menu():
-    while True:
-        clear_screen()
-        print_header("Help")
-        print(Fore.YELLOW + "1. BYOAI Documentation" + Style.RESET_ALL)
-        print(Fore.YELLOW + "2. About BYOAI" + Style.RESET_ALL)
-        print(Fore.YELLOW + "3. Back to Main Menu" + Style.RESET_ALL)
-        print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
-        choice = input(color_text("Select an option (1-3): ", '37'))
-        
-        if choice == '1':
-            log_message("Opening BYOAI documentation.")
-            print("Functionality not implemented yet.")
-            input(color_text("Press Enter to continue...", '37'))
-        elif choice == '2':
-            log_message("Displaying information about BYOAI.")
-            print("Functionality not implemented yet.")
-            input(color_text("Press Enter to continue...", '37'))
-        elif choice == '3':
-            log_message("Returning to the main menu.")
-            break
-        else:
-            log_message(f"Invalid choice: {choice}")
-            print(f"{color_text('Invalid choice:', '31')} {choice}")
-            input(color_text("Press Enter to continue...", '37'))
+    clear_screen()
+    print_header("Help")
+    print(Fore.YELLOW + "1. BYOAI Documentation" + Style.RESET_ALL)
+    print(Fore.YELLOW + "2. About BYOAI" + Style.RESET_ALL)
+    print(Fore.YELLOW + "3. Back to Main Menu" + Style.RESET_ALL)
+    print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
+    choice = input(color_text("Select an option (1-3): ", '37'))
+    return choice
 
 if __name__ == "__main__":
     while True:
@@ -296,23 +267,19 @@ if __name__ == "__main__":
                 if choice == '1':
                     log_message("Creating a new project.")
                     print("Functionality not implemented yet.")
-                    input(color_text("Press Enter to continue...", '37'))
                 elif choice == '2':
                     log_message("Viewing projects.")
                     print("Functionality not implemented yet.")
-                    input(color_text("Press Enter to continue...", '37'))
                 elif choice == '3':
                     log_message("Deleting a project.")
                     print("Functionality not implemented yet.")
-                    input(color_text("Press Enter to continue...", '37'))
                 elif choice == '4':
                     log_message("Returning to the main menu.")
                     break
                 else:
                     log_message(f"Invalid choice: {choice}")
                     print(f"{color_text('Invalid choice:', '31')} {choice}")
-                    input(color_text("Press Enter to continue...", '37'))
-                    
+
         elif choice == '2':
             model_management_menu()
 
@@ -322,27 +289,51 @@ if __name__ == "__main__":
                 if choice == '1':
                     log_message("Training a new model.")
                     print("Functionality not implemented yet.")
-                    input(color_text("Press Enter to continue...", '37'))
                 elif choice == '2':
                     log_message("Deploying a model.")
                     print("Functionality not implemented yet.")
-                    input(color_text("Press Enter to continue...", '37'))
                 elif choice == '3':
                     log_message("Returning to the main menu.")
                     break
                 else:
                     log_message(f"Invalid choice: {choice}")
                     print(f"{color_text('Invalid choice:', '31')} {choice}")
-                    input(color_text("Press Enter to continue...", '37'))
 
         elif choice == '4':
             byoai_prompt()
 
         elif choice == '5':
-            settings_menu()
+            while True:
+                choice = settings_menu()
+                if choice == '1':
+                    log_message("Changing installation directory.")
+                    print("Functionality not implemented yet.")
+                elif choice == '2':
+                    log_message("Viewing log.")
+                    with open(LOG_FILE, 'r') as log_file:
+                        print(log_file.read())
+                elif choice == '3':
+                    log_message("Returning to the main menu.")
+                    break
+                else:
+                    log_message(f"Invalid choice: {choice}")
+                    print(f"{color_text('Invalid choice:', '31')} {choice}")
 
         elif choice == '6':
-            help_menu()
+            while True:
+                choice = help_menu()
+                if choice == '1':
+                    log_message("Opening BYOAI documentation.")
+                    print("Functionality not implemented yet.")
+                elif choice == '2':
+                    log_message("Displaying information about BYOAI.")
+                    print("Functionality not implemented yet.")
+                elif choice == '3':
+                    log_message("Returning to the main menu.")
+                    break
+                else:
+                    log_message(f"Invalid choice: {choice}")
+                    print(f"{color_text('Invalid choice:', '31')} {choice}")
 
         elif choice == '7':
             print("Exiting BYOAI. Goodbye!")
@@ -350,4 +341,3 @@ if __name__ == "__main__":
 
         else:
             print(f"{color_text('Invalid choice:', '31')} {choice}")
-            input(color_text("Press Enter to continue...", '37'))
