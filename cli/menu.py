@@ -1,343 +1,271 @@
 import os
-import subprocess
 import json
-import requests
-from colorama import init, Fore, Style
-from urllib.parse import urlparse
 import sys
-import inquirer
+from colorama import init, Fore, Style
 
 # Initialize colorama
 init()
 
 # File paths
-REPO_URL = "../byoai-core/index.json"
-INSTALL_DIR = "../modules/"
+REPO_URL = "./index.json"
+INSTALL_DIR = "./user_space/"
 LOG_FILE = "byoai_log.txt"
 
-# Function to log messages to a file
+current_project = None
+current_model = None
+
+def color_text(text, color_code):
+    return f"{color_code}{text}{Style.RESET_ALL}"
+
+# Check for required libraries
+required_libraries = {
+    "torch": "PyTorch",
+    "transformers": "Transformers",
+    "huggingface_hub": "Hugging Face Hub"
+}
+
+missing_libraries = []
+
+for lib, name in required_libraries.items():
+    try:
+        __import__(lib)
+    except ImportError:
+        missing_libraries.append(name)
+
+if missing_libraries:
+    print(color_text("The following required libraries are missing:", Fore.YELLOW))
+    for lib in missing_libraries:
+        print(f"- {lib}")
+    print("\nPlease install them using pip:")
+    print(color_text("pip install torch transformers huggingface_hub", Fore.CYAN))
+    print("\nAfter installation, please restart the script.")
+    sys.exit(1)
+
+# Now that we've checked, we can safely import these
+from huggingface_hub import hf_hub_download
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
 def log_message(message):
     with open(LOG_FILE, 'a') as log_file:
         log_file.write(message + "\n")
 
-# Helper functions
-def clear_screen():
-    subprocess.run('clear' if os.name == 'posix' else 'cls', shell=True)
-
-def color_text(text, color_code):
-    return f"\033[{color_code}m{text}\033[0m"
-
 def fetch_model_index():
-    log_message("Fetching model index...")
     try:
         with open(REPO_URL, 'r') as f:
             data = json.load(f)
-            log_message(f"Model index fetched: {data}")
-            return data
+        return data
     except FileNotFoundError:
-        log_message("Failed to fetch model index. Please ensure the index.json file is located at '../byoai-core/index.json'.")
+        print(color_text(f"Failed to fetch model index. File not found at: {REPO_URL}", Fore.RED))
+        sys.exit(1)
+    except json.JSONDecodeError as e:
+        print(color_text(f"Failed to parse JSON. Ensure the index.json is valid. Error: {e}", Fore.RED))
         sys.exit(1)
 
-def fetch_tf_models():
-    log_message("Fetching TensorFlow models...")
-    try:
-        with open("../tf_models.json", 'r') as f:
-            data = json.load(f)
-            log_message(f"TensorFlow models fetched: {data}")
-            return data
-    except FileNotFoundError:
-        log_message("Failed to fetch TensorFlow models index. Please ensure the tf_models.json file exists.")
-        sys.exit(1)
-
-def search_models(query, source):
-    log_message(f"Searching models: {query} in {source}")
-    models = fetch_model_index() if source == 'huggingface' else fetch_tf_models()
-    for model in models:
-        if query.lower() in model["name"].lower():
-            print(f"{color_text('Model -->', '37')} {color_text(model['name'], '32')} {color_text('| Description -->', '33')} {color_text(model['description'] or 'No description available', '36' if model['description'] == 'No description available' else '32')}")
-            print(f"{color_text('URL:', '37')} {color_text(model['url'], '32')}")
-            print()
-
-def list_models(source, for_bundling=False):
-    log_message(f"Listing models from source: {source}")
-    models = fetch_model_index() if source == 'huggingface' else fetch_tf_models()
-    selected_models = []
-
-    log_message(f"Models: {models}")
-    choices = [
-        inquirer.Checkbox(
-            'models',
-            message=color_text("Select models to bundle (Press space to select, Enter to confirm):", '34'),
-            choices=[
-                (f"{color_text(model['name'], '32')} - {color_text(model['description'] or 'No description available', '36' if model['description'] == 'No description available' else '32')}", model['name']) for model in models
-            ],
-            validate=lambda answer: 'You must choose at least one model.' if len(answer) == 0 else True
-        )
-    ]
-
-    answers = inquirer.prompt(choices)
-    if answers and 'models' in answers:
-        selected_models = answers['models']
-
-    log_message(f"Selected models: {selected_models}")
-    return selected_models
-
-def install_model(model_name, source):
-    log_message(f"Installing model: {model_name} from {source}")
-    models = fetch_model_index() if source == 'huggingface' else fetch_tf_models()
-    for model in models:
-        if model_name.lower() == model["name"].lower():
-            url = model["url"]
-            response = requests.get(url)
-            if response.status_code == 200:
-                model_dir = os.path.join(INSTALL_DIR, model_name)
-                os.makedirs(model_dir, exist_ok=True)
-                file_extension = os.path.splitext(urlparse(url).path)[1]
-                model_path = os.path.join(model_dir, f"{os.path.basename(model_name)}{file_extension}")
-                with open(model_path, 'wb') as f:
-                    f.write(response.content)
-                log_message(f"Model '{model_name}' installed successfully from URL.")
-                print(f"{color_text('Model:', '37')} {color_text(model_name, '32')} {color_text('installed successfully from URL.', '36')}")
-                print_model_usage(model_name)
-            else:
-                log_message(f"Failed to download the model: {model_name}")
-                print(f"{color_text('Failed to download the model:', '31')} {color_text(model_name, '32')}")
-            return
-    log_message(f"Model '{model_name}' not found.")
-    print(f"{color_text('Model:', '31')} {color_text(model_name, '32')} {color_text('not found.', '31')}")
-
-def print_model_usage(model_name):
-    print(f"\n{color_text('To use the model, you can run:', '37')}")
-    print(f"{color_text(f'python modules/{model_name}/{os.path.basename(model_name)}.py [your_input_here]', '32')}")
-
-def update_models():
-    log_message("Updating models...")
+def list_models():
     models = fetch_model_index()
+    print(color_text("Available models:", Fore.CYAN))
     for model in models:
-        install_model(model["name"], 'huggingface')
+        print(f"{color_text(model['name'], Fore.GREEN)} - {model['description']}")
 
-def bundle_models(models):
-    log_message(f"Bundling models: {', '.join(models)}")
-    print(f"Bundling models: {', '.join(models)}")
-
-def use_installed_model():
-    models = os.listdir(INSTALL_DIR)
-    if not models:
-        log_message("No models installed.")
-        print("No models installed. Install a model first.")
+def install_model(model_name):
+    global current_project, current_model
+    if not current_project:
+        print(color_text("No project selected. Please select or create a project first.", Fore.YELLOW))
         return
 
-    print("Installed models:")
-    for index, model in enumerate(models, start=1):
-        print(f"{color_text(str(index), '37')}. {color_text(model, '33')}")
+    models = fetch_model_index()
+    model = next((m for m in models if model_name.lower() in m["name"].lower()), None)
+    
+    if not model:
+        print(color_text(f"Model '{model_name}' not found.", Fore.RED))
+        return
 
-    choice = input(f"{color_text('Enter the number of the model you want to use:', '37')} ")
+    repo_id = model["repo_id"]
+    
     try:
-        model_index = int(choice) - 1
-        if 0 <= model_index < len(models):
-            model_name = models[model_index]
-            model_path = os.path.join(INSTALL_DIR, model_name, f"{os.path.basename(model_name)}.py")
-            if os.path.exists(model_path):
-                user_input = input("Enter input for the model: ")
-                os.system(f"python {model_path} {user_input}")
-            else:
-                log_message(f"Model script {model_path} not found.")
-                print(f"Model script {model_path} not found.")
-        else:
-            log_message("Invalid choice. Please try again.")
-            print("Invalid choice. Please try again.")
-    except ValueError:
-        log_message("Invalid input. Please enter a number.")
-        print("Invalid input. Please enter a number.")
+        print(f"Downloading {model['name']}...")
+        project_dir = os.path.join(INSTALL_DIR, current_project)
+        model_dir = os.path.join(project_dir, model['name'])
+        os.makedirs(model_dir, exist_ok=True)
+        
+        # Download the model
+        AutoModelForCausalLM.from_pretrained(repo_id, cache_dir=model_dir)
+        AutoTokenizer.from_pretrained(repo_id, cache_dir=model_dir)
+        
+        print(color_text(f"Model '{model['name']}' downloaded to: {model_dir}", Fore.GREEN))
+        log_message(f"Model '{model['name']}' downloaded to: {model_dir}")
+        current_model = model['name']
+    except Exception as e:
+        print(color_text(f"Failed to download the model '{model['name']}': {str(e)}", Fore.RED))
+        log_message(f"Failed to download the model '{model['name']}': {str(e)}")
 
-def byoai_prompt():
+def create_project():
+    global current_project
+    project_name = input("Enter the name of the new project: ").strip()
+    if not project_name:
+        print(color_text("Project name cannot be empty.", Fore.RED))
+        return None
+    
+    project_path = os.path.join(INSTALL_DIR, project_name)
+    try:
+        os.makedirs(project_path, exist_ok=True)
+        print(color_text(f"Project '{project_name}' created successfully.", Fore.GREEN))
+        current_project = project_name
+        return project_name
+    except Exception as e:
+        print(color_text(f"Failed to create project: {str(e)}", Fore.RED))
+        return None
+
+def list_projects():
+    global current_project
+    projects = [d for d in os.listdir(INSTALL_DIR) if os.path.isdir(os.path.join(INSTALL_DIR, d))]
+    if not projects:
+        print(color_text("No projects found.", Fore.YELLOW))
+        return None
+    
+    print(color_text("Existing projects:", Fore.CYAN))
+    for i, project in enumerate(projects, 1):
+        print(f"{i}. {project}")
+    
     while True:
-        command = input(f"{color_text('BYOAI >', '36')} ")
-        if command.strip().lower() == 'exit':
-            break
+        choice = input("Enter the number of the project to select (or 0 to cancel): ").strip()
+        if choice == '0':
+            return None
         try:
-            os.system(command)
-        except Exception as e:
-            log_message(f"Error: {str(e)}")
-            print(f"{color_text('Error:', '31')} {str(e)}")
+            project_index = int(choice) - 1
+            if 0 <= project_index < len(projects):
+                current_project = projects[project_index]
+                return current_project
+            else:
+                print(color_text("Invalid project number. Please try again.", Fore.RED))
+        except ValueError:
+            print(color_text("Invalid input. Please enter a number.", Fore.RED))
 
-def print_header(text):
-    print(Fore.CYAN + "=" * 23)
-    print(Fore.CYAN + text.center(23))
-    print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
+def check_model_files(model_dir):
+    print(f"Checking contents of {model_dir}:")
+    for root, dirs, files in os.walk(model_dir):
+        level = root.replace(model_dir, '').count(os.sep)
+        indent = ' ' * 4 * level
+        print(f"{indent}{os.path.basename(root)}/")
+        sub_indent = ' ' * 4 * (level + 1)
+        for file in files:
+            print(f"{sub_indent}{file}")
+    
+    required_files = ['config.json', 'tokenizer.json', 'tokenizer_config.json']
+    model_files = ['pytorch_model.bin', 'model.safetensors']
+    
+    missing_files = []
+    for file in required_files + model_files:
+        if not any(file in files for root, dirs, files in os.walk(model_dir)):
+            missing_files.append(file)
+    
+    return missing_files
+
+def find_model_files(model_dir):
+    print(f"Searching for model files in: {model_dir}")
+    
+    # Check the specific nested structure
+    nested_dir = os.path.join(model_dir, 'models--gpt2', 'snapshots')
+    if os.path.exists(nested_dir):
+        snapshot_dirs = [d for d in os.listdir(nested_dir) if os.path.isdir(os.path.join(nested_dir, d))]
+        if snapshot_dirs:
+            snapshot_dir = os.path.join(nested_dir, snapshot_dirs[0])
+            if os.path.isfile(os.path.join(snapshot_dir, 'config.json')) and \
+               (os.path.isfile(os.path.join(snapshot_dir, 'model.safetensors')) or \
+                os.path.isfile(os.path.join(snapshot_dir, 'pytorch_model.bin'))):
+                print(f"Found model files in: {snapshot_dir}")
+                return snapshot_dir
+    
+    # If not found in the specific structure, fall back to the previous search method
+    for root, dirs, files in os.walk(model_dir):
+        if 'config.json' in files and ('model.safetensors' in files or 'pytorch_model.bin' in files):
+            print(f"Found model files in: {root}")
+            return root
+    
+    print(f"Could not find model files in {model_dir} or its subdirectories")
+    return None
+
+def interact_with_model():
+    global current_project, current_model
+    if not current_project or not current_model:
+        print(color_text("No project or model selected. Please select a project and install a model first.", Fore.YELLOW))
+        return
+
+    base_model_dir = os.path.join(INSTALL_DIR, current_project, current_model)
+    print(f"Base model directory: {base_model_dir}")
+    
+    model_dir = find_model_files(base_model_dir)
+    if not model_dir:
+        print(color_text(f"Could not find the necessary model files in {base_model_dir}", Fore.RED))
+        print("Please try reinstalling the model.")
+        check_model_files(base_model_dir)
+        return
+
+    try:
+        print(color_text(f"Loading model: {current_model}", Fore.CYAN))
+        print(color_text(f"Model directory: {model_dir}", Fore.CYAN))
+        
+        tokenizer = AutoTokenizer.from_pretrained(model_dir, local_files_only=True)
+        model = AutoModelForCausalLM.from_pretrained(model_dir, local_files_only=True)
+
+        print(color_text(f"Interacting with model: {current_model}", Fore.CYAN))
+        while True:
+            user_input = input("Enter your prompt (or 'quit' to exit): ").strip()
+            if user_input.lower() == 'quit':
+                break
+
+            inputs = tokenizer(user_input, return_tensors="pt")
+            outputs = model.generate(**inputs, max_length=100)
+            response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+            print(color_text("Model response:", Fore.GREEN), response)
+
+    except Exception as e:
+        print(color_text(f"Error interacting with the model: {str(e)}", Fore.RED))
+        print("Make sure you have PyTorch installed and the model is fully downloaded.")
+        print(f"Model directory: {model_dir}")
+        check_model_files(model_dir)
 
 def main_menu():
-    clear_screen()
-    print_header("Welcome to BYOAI")
-    print(Fore.YELLOW + "1. Project Management" + Style.RESET_ALL)
-    print(Fore.YELLOW + "2. Model Management" + Style.RESET_ALL)
-    print(Fore.YELLOW + "3. Training & Deployment" + Style.RESET_ALL)
-    print(Fore.YELLOW + "4. BYOAI Terminal" + Style.RESET_ALL)
-    print(Fore.YELLOW + "5. Settings" + Style.RESET_ALL)
-    print(Fore.YELLOW + "6. Help" + Style.RESET_ALL)
-    print(Fore.YELLOW + "7. Exit" + Style.RESET_ALL)
-    print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
-    choice = input(color_text("Select an option (1-7): ", '37'))
-    return choice
-
-def project_management_menu():
-    clear_screen()
-    print_header("Project Management")
-    print(Fore.YELLOW + "1. Create New Project" + Style.RESET_ALL)
-    print(Fore.YELLOW + "2. View Projects" + Style.RESET_ALL)
-    print(Fore.YELLOW + "3. Delete Project" + Style.RESET_ALL)
-    print(Fore.YELLOW + "4. Back to Main Menu" + Style.RESET_ALL)
-    print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
-    choice = input(color_text("Select an option (1-4): ", '37'))
-    return choice
-def model_management_menu():
+    global current_project, current_model
     while True:
-        clear_screen()
-        print_header("Model Management")
-        print(Fore.YELLOW + "1. Search Models" + Style.RESET_ALL)
-        print(Fore.YELLOW + "2. List and Bundle Models" + Style.RESET_ALL)
-        print(Fore.YELLOW + "3. Install Model" + Style.RESET_ALL)
-        print(Fore.YELLOW + "4. Update Models" + Style.RESET_ALL)
-        print(Fore.YELLOW + "5. Use Installed Model" + Style.RESET_ALL)
-        print(Fore.YELLOW + "6. Back to Main Menu" + Style.RESET_ALL)
-        print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
-        choice = input(color_text("Select an option (1-6): ", '37'))
-
+        print("\n" + color_text("BYOAI CLI", Fore.CYAN))
+        print(f"Current Project: {color_text(current_project or 'None', Fore.YELLOW)}")
+        print(f"Current Model: {color_text(current_model or 'None', Fore.YELLOW)}")
+        print("1. Create a new project")
+        print("2. Select an existing project")
+        print("3. List available models")
+        print("4. Install a model")
+        print("5. Interact with the model")
+        print("6. Exit")
+        
+        choice = input("Enter your choice (1-6): ").strip()
+        
         if choice == '1':
-            query = input("Enter a search query: ")
-            search_models(query, 'huggingface')
-            input("Press Enter to continue...")
+            create_project()
         elif choice == '2':
-            models_to_bundle = list_models('huggingface', for_bundling=True)
-            bundle_models(models_to_bundle)
-            input("Press Enter to continue...")
+            list_projects()
         elif choice == '3':
-            model_name = input("Enter the name of the model to install: ")
-            install_model(model_name, 'huggingface')
-            input("Press Enter to continue...")
+            list_models()
         elif choice == '4':
-            update_models()
-            input("Press Enter to continue...")
+            if not current_project:
+                print(color_text("Please select a project first.", Fore.YELLOW))
+                continue
+            print("Available models:")
+            list_models()
+            model_name = input("Enter the name or part of the name of the model to install: ").strip()
+            if model_name:
+                install_model(model_name)
+            else:
+                print(color_text("Model name cannot be empty.", Fore.RED))
         elif choice == '5':
-            use_installed_model()
-            input("Press Enter to continue...")
+            interact_with_model()
         elif choice == '6':
-            break
+            print("Exiting BYOAI. Goodbye!")
+            sys.exit()
         else:
-            print(f"{color_text('Invalid choice:', '31')} {choice}")
-            input("Press Enter to continue...")
-
-def training_deployment_menu():
-    clear_screen()
-    print_header("Training & Deployment")
-    print(Fore.YELLOW + "1. Train New Model" + Style.RESET_ALL)
-    print(Fore.YELLOW + "2. Deploy Model" + Style.RESET_ALL)
-    print(Fore.YELLOW + "3. Back to Main Menu" + Style.RESET_ALL)
-    print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
-    choice = input(color_text("Select an option (1-3): ", '37'))
-    return choice
-
-def settings_menu():
-    clear_screen()
-    print_header("Settings")
-    print(Fore.YELLOW + "1. Change Installation Directory" + Style.RESET_ALL)
-    print(Fore.YELLOW + "2. View Log" + Style.RESET_ALL)
-    print(Fore.YELLOW + "3. Back to Main Menu" + Style.RESET_ALL)
-    print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
-    choice = input(color_text("Select an option (1-3): ", '37'))
-    return choice
-
-def help_menu():
-    clear_screen()
-    print_header("Help")
-    print(Fore.YELLOW + "1. BYOAI Documentation" + Style.RESET_ALL)
-    print(Fore.YELLOW + "2. About BYOAI" + Style.RESET_ALL)
-    print(Fore.YELLOW + "3. Back to Main Menu" + Style.RESET_ALL)
-    print(Fore.CYAN + "=" * 23 + Style.RESET_ALL)
-    choice = input(color_text("Select an option (1-3): ", '37'))
-    return choice
+            print(color_text("Invalid choice. Please try again.", Fore.RED))
 
 if __name__ == "__main__":
-    while True:
-        choice = main_menu()
-
-        if choice == '1':
-            while True:
-                choice = project_management_menu()
-                if choice == '1':
-                    log_message("Creating a new project.")
-                    print("Functionality not implemented yet.")
-                elif choice == '2':
-                    log_message("Viewing projects.")
-                    print("Functionality not implemented yet.")
-                elif choice == '3':
-                    log_message("Deleting a project.")
-                    print("Functionality not implemented yet.")
-                elif choice == '4':
-                    log_message("Returning to the main menu.")
-                    break
-                else:
-                    log_message(f"Invalid choice: {choice}")
-                    print(f"{color_text('Invalid choice:', '31')} {choice}")
-
-        elif choice == '2':
-            model_management_menu()
-
-        elif choice == '3':
-            while True:
-                choice = training_deployment_menu()
-                if choice == '1':
-                    log_message("Training a new model.")
-                    print("Functionality not implemented yet.")
-                elif choice == '2':
-                    log_message("Deploying a model.")
-                    print("Functionality not implemented yet.")
-                elif choice == '3':
-                    log_message("Returning to the main menu.")
-                    break
-                else:
-                    log_message(f"Invalid choice: {choice}")
-                    print(f"{color_text('Invalid choice:', '31')} {choice}")
-
-        elif choice == '4':
-            byoai_prompt()
-
-        elif choice == '5':
-            while True:
-                choice = settings_menu()
-                if choice == '1':
-                    log_message("Changing installation directory.")
-                    print("Functionality not implemented yet.")
-                elif choice == '2':
-                    log_message("Viewing log.")
-                    with open(LOG_FILE, 'r') as log_file:
-                        print(log_file.read())
-                elif choice == '3':
-                    log_message("Returning to the main menu.")
-                    break
-                else:
-                    log_message(f"Invalid choice: {choice}")
-                    print(f"{color_text('Invalid choice:', '31')} {choice}")
-
-        elif choice == '6':
-            while True:
-                choice = help_menu()
-                if choice == '1':
-                    log_message("Opening BYOAI documentation.")
-                    print("Functionality not implemented yet.")
-                elif choice == '2':
-                    log_message("Displaying information about BYOAI.")
-                    print("Functionality not implemented yet.")
-                elif choice == '3':
-                    log_message("Returning to the main menu.")
-                    break
-                else:
-                    log_message(f"Invalid choice: {choice}")
-                    print(f"{color_text('Invalid choice:', '31')} {choice}")
-
-        elif choice == '7':
-            print("Exiting BYOAI. Goodbye!")
-            break
-
-        else:
-            print(f"{color_text('Invalid choice:', '31')} {choice}")
+    # Clear the screen once when the app starts
+    os.system('cls' if os.name == 'nt' else 'clear')
+    main_menu()

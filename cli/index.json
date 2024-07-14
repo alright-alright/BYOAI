@@ -1,0 +1,23 @@
+[
+  {
+    "name": "bert-base-uncased",
+    "description": "BERT base model (uncased)",
+    "url": "https://huggingface.co/bert-base-uncased/resolve/main/config.json",
+    "repo_id": "bert-base-uncased",
+    "source": "huggingface"
+  },
+  {
+    "name": "distilbert-base-uncased",
+    "description": "DistilBERT base model (uncased)",
+    "url": "https://huggingface.co/distilbert-base-uncased/resolve/main/config.json",
+    "repo_id": "distilbert-base-uncased",
+    "source": "huggingface"
+  },
+  {
+    "name": "gpt2",
+    "description": "GPT-2 language model",
+    "url": "https://huggingface.co/gpt2/resolve/main/config.json",
+    "repo_id": "gpt2",
+    "source": "huggingface"
+  }
+]
