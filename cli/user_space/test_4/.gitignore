@@ -1,0 +1,10 @@
+# Ignore JAR files
+bfg-1.14.0.jar
+../../bfg-1.14.0.jar
+
+# Ignore directories
+../../../modules/AJ-Dude/
+../../../modules/AJ/
+../../../modules/albert/
+../../../projects/
+../../../user_space/

@@ -1,12 +1,9 @@
-byoai_log.txt
-cli/byoai_log.txt
-
 # Ignore JAR files
 bfg-1.14.0.jar
 
 # Ignore specific directories
-modules/AJ-Dude/
-modules/AJ/
-modules/albert/
-projects/
-user_space/
+../modules/AJ-Dude/
+../modules/AJ/
+../modules/albert/
+../projects/
+../user_space/
