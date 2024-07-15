@@ -14,7 +14,8 @@ def fetch_huggingface_models():
         model_info = {
             "name": model['modelId'],
             "description": model.get('description', 'No description available'),
-            "url": f"https://huggingface.co/{model['modelId']}",  # or other relevant URL/path for the model
+            "url": f"https://huggingface.co/{model['modelId']}/resolve/main/{model['modelId']}.py",  # Construct the URL
+            "repo_id": model['modelId'],  # Add the repo_id field
             "source": "huggingface"
         }
         model_data.append(model_info)
