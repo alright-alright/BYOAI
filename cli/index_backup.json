@@ -1,0 +1,583 @@
+[
+    {
+        "name": "albert/albert-base-v1",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/albert/albert-base-v1/resolve/main/config.json",
+        "repo_id": "albert/albert-base-v1",
+        "source": "huggingface"
+    },
+    {
+        "name": "albert/albert-base-v2",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/albert/albert-base-v2/resolve/main/config.json",
+        "repo_id": "albert/albert-base-v2",
+        "source": "huggingface"
+    },
+    {
+        "name": "albert/albert-large-v1",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/albert/albert-large-v1/resolve/main/config.json",
+        "repo_id": "albert/albert-large-v1",
+        "source": "huggingface"
+    },
+    {
+        "name": "albert/albert-large-v2",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/albert/albert-large-v2/resolve/main/config.json",
+        "repo_id": "albert/albert-large-v2",
+        "source": "huggingface"
+    },
+    {
+        "name": "albert/albert-xlarge-v1",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/albert/albert-xlarge-v1/resolve/main/config.json",
+        "repo_id": "albert/albert-xlarge-v1",
+        "source": "huggingface"
+    },
+    {
+        "name": "albert/albert-xlarge-v2",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/albert/albert-xlarge-v2/resolve/main/config.json",
+        "repo_id": "albert/albert-xlarge-v2",
+        "source": "huggingface"
+    },
+    {
+        "name": "albert/albert-xxlarge-v1",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/albert/albert-xxlarge-v1/resolve/main/config.json",
+        "repo_id": "albert/albert-xxlarge-v1",
+        "source": "huggingface"
+    },
+    {
+        "name": "albert/albert-xxlarge-v2",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/albert/albert-xxlarge-v2/resolve/main/config.json",
+        "repo_id": "albert/albert-xxlarge-v2",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-base-cased-finetuned-mrpc",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-base-cased-finetuned-mrpc/resolve/main/config.json",
+        "repo_id": "google-bert/bert-base-cased-finetuned-mrpc",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-base-cased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-base-cased/resolve/main/config.json",
+        "repo_id": "google-bert/bert-base-cased",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-base-chinese",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-base-chinese/resolve/main/config.json",
+        "repo_id": "google-bert/bert-base-chinese",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-base-german-cased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-base-german-cased/resolve/main/config.json",
+        "repo_id": "google-bert/bert-base-german-cased",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-base-german-dbmdz-cased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-base-german-dbmdz-cased/resolve/main/config.json",
+        "repo_id": "google-bert/bert-base-german-dbmdz-cased",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-base-german-dbmdz-uncased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-base-german-dbmdz-uncased/resolve/main/config.json",
+        "repo_id": "google-bert/bert-base-german-dbmdz-uncased",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-base-multilingual-cased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-base-multilingual-cased/resolve/main/config.json",
+        "repo_id": "google-bert/bert-base-multilingual-cased",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-base-multilingual-uncased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-base-multilingual-uncased/resolve/main/config.json",
+        "repo_id": "google-bert/bert-base-multilingual-uncased",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-base-uncased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/main/config.json",
+        "repo_id": "google-bert/bert-base-uncased",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-large-cased-whole-word-masking-finetuned-squad",
+        "description": "question-answering",
+        "url": "https://huggingface.co/google-bert/bert-large-cased-whole-word-masking-finetuned-squad/resolve/main/config.json",
+        "repo_id": "google-bert/bert-large-cased-whole-word-masking-finetuned-squad",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-large-cased-whole-word-masking",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-large-cased-whole-word-masking/resolve/main/config.json",
+        "repo_id": "google-bert/bert-large-cased-whole-word-masking",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-large-cased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-large-cased/resolve/main/config.json",
+        "repo_id": "google-bert/bert-large-cased",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-large-uncased-whole-word-masking-finetuned-squad",
+        "description": "question-answering",
+        "url": "https://huggingface.co/google-bert/bert-large-uncased-whole-word-masking-finetuned-squad/resolve/main/config.json",
+        "repo_id": "google-bert/bert-large-uncased-whole-word-masking-finetuned-squad",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-large-uncased-whole-word-masking",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-large-uncased-whole-word-masking/resolve/main/config.json",
+        "repo_id": "google-bert/bert-large-uncased-whole-word-masking",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-bert/bert-large-uncased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/google-bert/bert-large-uncased/resolve/main/config.json",
+        "repo_id": "google-bert/bert-large-uncased",
+        "source": "huggingface"
+    },
+    {
+        "name": "almanach/camembert-base",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/almanach/camembert-base/resolve/main/config.json",
+        "repo_id": "almanach/camembert-base",
+        "source": "huggingface"
+    },
+    {
+        "name": "Salesforce/ctrl",
+        "description": "text-generation",
+        "url": "https://huggingface.co/Salesforce/ctrl/resolve/main/config.json",
+        "repo_id": "Salesforce/ctrl",
+        "source": "huggingface"
+    },
+    {
+        "name": "distilbert/distilbert-base-cased-distilled-squad",
+        "description": "question-answering",
+        "url": "https://huggingface.co/distilbert/distilbert-base-cased-distilled-squad/resolve/main/config.json",
+        "repo_id": "distilbert/distilbert-base-cased-distilled-squad",
+        "source": "huggingface"
+    },
+    {
+        "name": "distilbert/distilbert-base-cased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/distilbert/distilbert-base-cased/resolve/main/config.json",
+        "repo_id": "distilbert/distilbert-base-cased",
+        "source": "huggingface"
+    },
+    {
+        "name": "distilbert/distilbert-base-german-cased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/distilbert/distilbert-base-german-cased/resolve/main/config.json",
+        "repo_id": "distilbert/distilbert-base-german-cased",
+        "source": "huggingface"
+    },
+    {
+        "name": "distilbert/distilbert-base-multilingual-cased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/distilbert/distilbert-base-multilingual-cased/resolve/main/config.json",
+        "repo_id": "distilbert/distilbert-base-multilingual-cased",
+        "source": "huggingface"
+    },
+    {
+        "name": "distilbert/distilbert-base-uncased-distilled-squad",
+        "description": "question-answering",
+        "url": "https://huggingface.co/distilbert/distilbert-base-uncased-distilled-squad/resolve/main/config.json",
+        "repo_id": "distilbert/distilbert-base-uncased-distilled-squad",
+        "source": "huggingface"
+    },
+    {
+        "name": "distilbert/distilbert-base-uncased-finetuned-sst-2-english",
+        "description": "text-classification",
+        "url": "https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english/resolve/main/config.json",
+        "repo_id": "distilbert/distilbert-base-uncased-finetuned-sst-2-english",
+        "source": "huggingface"
+    },
+    {
+        "name": "distilbert/distilbert-base-uncased",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/distilbert/distilbert-base-uncased/resolve/main/config.json",
+        "repo_id": "distilbert/distilbert-base-uncased",
+        "source": "huggingface"
+    },
+    {
+        "name": "distilbert/distilgpt2",
+        "description": "text-generation",
+        "url": "https://huggingface.co/distilbert/distilgpt2/resolve/main/config.json",
+        "repo_id": "distilbert/distilgpt2",
+        "source": "huggingface"
+    },
+    {
+        "name": "distilbert/distilroberta-base",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/distilbert/distilroberta-base/resolve/main/config.json",
+        "repo_id": "distilbert/distilroberta-base",
+        "source": "huggingface"
+    },
+    {
+        "name": "openai-community/gpt2-large",
+        "description": "text-generation",
+        "url": "https://huggingface.co/openai-community/gpt2-large/resolve/main/config.json",
+        "repo_id": "openai-community/gpt2-large",
+        "source": "huggingface"
+    },
+    {
+        "name": "openai-community/gpt2-medium",
+        "description": "text-generation",
+        "url": "https://huggingface.co/openai-community/gpt2-medium/resolve/main/config.json",
+        "repo_id": "openai-community/gpt2-medium",
+        "source": "huggingface"
+    },
+    {
+        "name": "openai-community/gpt2-xl",
+        "description": "text-generation",
+        "url": "https://huggingface.co/openai-community/gpt2-xl/resolve/main/config.json",
+        "repo_id": "openai-community/gpt2-xl",
+        "source": "huggingface"
+    },
+    {
+        "name": "openai-community/gpt2",
+        "description": "text-generation",
+        "url": "https://huggingface.co/openai-community/gpt2/resolve/main/config.json",
+        "repo_id": "openai-community/gpt2",
+        "source": "huggingface"
+    },
+    {
+        "name": "openai-community/openai-gpt",
+        "description": "text-generation",
+        "url": "https://huggingface.co/openai-community/openai-gpt/resolve/main/config.json",
+        "repo_id": "openai-community/openai-gpt",
+        "source": "huggingface"
+    },
+    {
+        "name": "openai-community/roberta-base-openai-detector",
+        "description": "text-classification",
+        "url": "https://huggingface.co/openai-community/roberta-base-openai-detector/resolve/main/config.json",
+        "repo_id": "openai-community/roberta-base-openai-detector",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/roberta-base",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/roberta-base/resolve/main/config.json",
+        "repo_id": "FacebookAI/roberta-base",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/roberta-large-mnli",
+        "description": "text-classification",
+        "url": "https://huggingface.co/FacebookAI/roberta-large-mnli/resolve/main/config.json",
+        "repo_id": "FacebookAI/roberta-large-mnli",
+        "source": "huggingface"
+    },
+    {
+        "name": "openai-community/roberta-large-openai-detector",
+        "description": "text-classification",
+        "url": "https://huggingface.co/openai-community/roberta-large-openai-detector/resolve/main/config.json",
+        "repo_id": "openai-community/roberta-large-openai-detector",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/roberta-large",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/roberta-large/resolve/main/config.json",
+        "repo_id": "FacebookAI/roberta-large",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-t5/t5-11b",
+        "description": "translation",
+        "url": "https://huggingface.co/google-t5/t5-11b/resolve/main/config.json",
+        "repo_id": "google-t5/t5-11b",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-t5/t5-3b",
+        "description": "translation",
+        "url": "https://huggingface.co/google-t5/t5-3b/resolve/main/config.json",
+        "repo_id": "google-t5/t5-3b",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-t5/t5-base",
+        "description": "translation",
+        "url": "https://huggingface.co/google-t5/t5-base/resolve/main/config.json",
+        "repo_id": "google-t5/t5-base",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-t5/t5-large",
+        "description": "translation",
+        "url": "https://huggingface.co/google-t5/t5-large/resolve/main/config.json",
+        "repo_id": "google-t5/t5-large",
+        "source": "huggingface"
+    },
+    {
+        "name": "google-t5/t5-small",
+        "description": "translation",
+        "url": "https://huggingface.co/google-t5/t5-small/resolve/main/config.json",
+        "repo_id": "google-t5/t5-small",
+        "source": "huggingface"
+    },
+    {
+        "name": "transfo-xl/transfo-xl-wt103",
+        "description": "text-generation",
+        "url": "https://huggingface.co/transfo-xl/transfo-xl-wt103/resolve/main/config.json",
+        "repo_id": "transfo-xl/transfo-xl-wt103",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-clm-ende-1024",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-clm-ende-1024/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-clm-ende-1024",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-clm-enfr-1024",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-clm-enfr-1024/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-clm-enfr-1024",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-mlm-100-1280",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-mlm-100-1280/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-mlm-100-1280",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-mlm-17-1280",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-mlm-17-1280/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-mlm-17-1280",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-mlm-en-2048",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-mlm-en-2048/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-mlm-en-2048",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-mlm-ende-1024",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-mlm-ende-1024/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-mlm-ende-1024",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-mlm-enfr-1024",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-mlm-enfr-1024/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-mlm-enfr-1024",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-mlm-enro-1024",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-mlm-enro-1024/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-mlm-enro-1024",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-mlm-tlm-xnli15-1024",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-mlm-tlm-xnli15-1024/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-mlm-tlm-xnli15-1024",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-mlm-xnli15-1024",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-mlm-xnli15-1024/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-mlm-xnli15-1024",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-roberta-base",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-roberta-base/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-roberta-base",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-roberta-large-finetuned-conll02-dutch",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-roberta-large-finetuned-conll02-dutch/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-roberta-large-finetuned-conll02-dutch",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-roberta-large-finetuned-conll02-spanish",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-roberta-large-finetuned-conll02-spanish/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-roberta-large-finetuned-conll02-spanish",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-roberta-large-finetuned-conll03-english",
+        "description": "token-classification",
+        "url": "https://huggingface.co/FacebookAI/xlm-roberta-large-finetuned-conll03-english/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-roberta-large-finetuned-conll03-english",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-roberta-large-finetuned-conll03-german",
+        "description": "token-classification",
+        "url": "https://huggingface.co/FacebookAI/xlm-roberta-large-finetuned-conll03-german/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-roberta-large-finetuned-conll03-german",
+        "source": "huggingface"
+    },
+    {
+        "name": "FacebookAI/xlm-roberta-large",
+        "description": "fill-mask",
+        "url": "https://huggingface.co/FacebookAI/xlm-roberta-large/resolve/main/config.json",
+        "repo_id": "FacebookAI/xlm-roberta-large",
+        "source": "huggingface"
+    },
+    {
+        "name": "xlnet/xlnet-base-cased",
+        "description": "text-generation",
+        "url": "https://huggingface.co/xlnet/xlnet-base-cased/resolve/main/config.json",
+        "repo_id": "xlnet/xlnet-base-cased",
+        "source": "huggingface"
+    },
+    {
+        "name": "xlnet/xlnet-large-cased",
+        "description": "text-generation",
+        "url": "https://huggingface.co/xlnet/xlnet-large-cased/resolve/main/config.json",
+        "repo_id": "xlnet/xlnet-large-cased",
+        "source": "huggingface"
+    },
+    {
+        "name": "09panesara/distilbert-base-uncased-finetuned-cola",
+        "description": "text-classification",
+        "url": "https://huggingface.co/09panesara/distilbert-base-uncased-finetuned-cola/resolve/main/config.json",
+        "repo_id": "09panesara/distilbert-base-uncased-finetuned-cola",
+        "source": "huggingface"
+    },
+    {
+        "name": "0x7o/keyt5-base",
+        "description": "text2text-generation",
+        "url": "https://huggingface.co/0x7o/keyt5-base/resolve/main/config.json",
+        "repo_id": "0x7o/keyt5-base",
+        "source": "huggingface"
+    },
+    {
+        "name": "0x7o/keyt5-large",
+        "description": "text2text-generation",
+        "url": "https://huggingface.co/0x7o/keyt5-large/resolve/main/config.json",
+        "repo_id": "0x7o/keyt5-large",
+        "source": "huggingface"
+    },
+    {
+        "name": "0xDEADBEA7/DialoGPT-small-rick",
+        "description": "text-generation",
+        "url": "https://huggingface.co/0xDEADBEA7/DialoGPT-small-rick/resolve/main/config.json",
+        "repo_id": "0xDEADBEA7/DialoGPT-small-rick",
+        "source": "huggingface"
+    },
+    {
+        "name": "123abhiALFLKFO/distilbert-base-uncased-finetuned-cola",
+        "description": "text-classification",
+        "url": "https://huggingface.co/123abhiALFLKFO/distilbert-base-uncased-finetuned-cola/resolve/main/config.json",
+        "repo_id": "123abhiALFLKFO/distilbert-base-uncased-finetuned-cola",
+        "source": "huggingface"
+    },
+    {
+        "name": "123www/test_model",
+        "description": "No description available",
+        "url": "https://huggingface.co/123www/test_model/resolve/main/config.json",
+        "repo_id": "123www/test_model",
+        "source": "huggingface"
+    },
+    {
+        "name": "13048909972/wav2vec2-common_voice-tr-demo",
+        "description": "automatic-speech-recognition",
+        "url": "https://huggingface.co/13048909972/wav2vec2-common_voice-tr-demo/resolve/main/config.json",
+        "repo_id": "13048909972/wav2vec2-common_voice-tr-demo",
+        "source": "huggingface"
+    },
+    {
+        "name": "13048909972/wav2vec2-large-xls-r-300m-tr-colab",
+        "description": "automatic-speech-recognition",
+        "url": "https://huggingface.co/13048909972/wav2vec2-large-xls-r-300m-tr-colab/resolve/main/config.json",
+        "repo_id": "13048909972/wav2vec2-large-xls-r-300m-tr-colab",
+        "source": "huggingface"
+    },
+    {
+        "name": "13048909972/wav2vec2-large-xlsr-53_common_voice_20211211085606",
+        "description": "automatic-speech-recognition",
+        "url": "https://huggingface.co/13048909972/wav2vec2-large-xlsr-53_common_voice_20211211085606/resolve/main/config.json",
+        "repo_id": "13048909972/wav2vec2-large-xlsr-53_common_voice_20211211085606",
+        "source": "huggingface"
+    },
+    {
+        "name": "13on/gpt2-wishes",
+        "description": "text-generation",
+        "url": "https://huggingface.co/13on/gpt2-wishes/resolve/main/config.json",
+        "repo_id": "13on/gpt2-wishes",
+        "source": "huggingface"
+    },
+    {
+        "name": "13on/kw2t-wishes",
+        "description": "text2text-generation",
+        "url": "https://huggingface.co/13on/kw2t-wishes/resolve/main/config.json",
+        "repo_id": "13on/kw2t-wishes",
+        "source": "huggingface"
+    },
+    {
+        "name": "1757968399/tinybert_4_312_1200",
+        "description": "No description available",
+        "url": "https://huggingface.co/1757968399/tinybert_4_312_1200/resolve/main/config.json",
+        "repo_id": "1757968399/tinybert_4_312_1200",
+        "source": "huggingface"
+    },
+    {
+        "name": "18811449050/bert_cn_finetuning",
+        "description": "text-classification",
+        "url": "https://huggingface.co/18811449050/bert_cn_finetuning/resolve/main/config.json",
+        "repo_id": "18811449050/bert_cn_finetuning",
+        "source": "huggingface"
+    },
+    {
+        "name": "18811449050/bert_finetuning_test",
+        "description": "text-classification",
+        "url": "https://huggingface.co/18811449050/bert_finetuning_test/resolve/main/config.json",
+        "repo_id": "18811449050/bert_finetuning_test",
+        "source": "huggingface"
+    },
+    {
+        "name": "1Basco/DialoGPT-small-jake",
+        "description": "text-generation",
+        "url": "https://huggingface.co/1Basco/DialoGPT-small-jake/resolve/main/config.json",
+        "repo_id": "1Basco/DialoGPT-small-jake",
+        "source": "huggingface"
+    }
+]
