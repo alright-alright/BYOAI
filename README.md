@@ -104,4 +104,4 @@ We welcome contributions! Please see our CONTRIBUTING.md for details.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+This project is licensed under the GPLv3 License - see the LICENSE file for details.
