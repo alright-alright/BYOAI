@@ -36,7 +36,7 @@
 
 		<link rel="canonical" href="https://huggingface.co/openai-community/gpt2">  
 
-		<title>openai-community/gpt2 · Hugging Face</title>
+		<title>openai-community/gpt2 - Hugging Face</title>
 
 		<script
 			defer
